@@ -8,7 +8,7 @@
 ```sudo systemctl enable kubelet.service  ```
 ```sudo systemctl enable docker.service```
 
-**Master'da token bilgisi verilmisti eger not almadiysak su sekilde listeleyebiliriz**
+**Master'da token bilgisi verilmisti eger not almadiysak su sekilde listeleyebiliriz**  
 ```kubeadm token list```
 
 **Yeniden bir token generate etmek istiyorsak**   
@@ -18,9 +18,7 @@
 ```openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'```
 
 **Api Server in IP adresi ya da adi, token imiz ve cert ile Node'umuzu cluster a dahil edelim**  
-```sudo kubeadm join <ip>:6443 \
-    --token<token> \
-    --discovery-token-ca-cert-hash <ca_cert_hash>```
+```sudo kubeadm join <ip>:6443 --token<token> --discovery-token-ca-cert-hash <ca_cert_hash>```
 
 **Master a donecek olursak networking pod u yaratilana kadar NotReady state de gorulecektir**  
 Pod un schedule edilip container inin indirilmesini bekliyor  
