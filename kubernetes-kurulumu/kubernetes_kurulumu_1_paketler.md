@@ -21,7 +21,7 @@
 ```sudo kubeadm join <ip>:6443 --token<token> --discovery-token-ca-cert-hash <ca_cert_hash>```
 
 **Master a donecek olursak networking pod u yaratilana kadar NotReady state de gorulecektir**  
-Pod un schedule edilip container inin indirilmesini bekliyor  
+**Pod un schedule edilip container inin indirilmesini bekliyor**  
 ```kubectl get nodes ```
 
 **Master'da calico pod ve kube-proxy nin yeni eklenen node larda calisir hale gelmesini gozlemleyelim**  
