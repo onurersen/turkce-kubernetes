@@ -1,28 +1,31 @@
-**HEM MASTER HEM NODE'A ONCELIKLI YAPILACAKLAR LISTESI**
+**NODE ICIN YAPILACAKLAR LISTESI**  
 
-**Swap disable et**  
-```swapoff -a```
+**kubelet ve container runtime service lerini kontrol ederim**  
+```sudo systemctl status kubelet.service```  
+```sudo systemctl status docker.service  ```
 
-**Google apt repository key ekle**  
-```curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -```
-
-**Kubernetes apt repository i ekle**  
-```sudo bash -c 'cat <<EOF >/etc/apt/sources.list.d/kubernetes.list deb https://apt.kubernetes.io/ kubernetes-xenial main EOF'```
-
-**Package listemizi g¸ncelleyelim**  
-```sudo apt-get update```
-
-**Repository deki versiyonlari daha sonra incelemek icin apt-cache ile cachleyelim**  
-```apt-cache policy kubelet | head -n 20``` 
-```apt-cache policy docker.io | head -n 20```
-
-**Gerekli paketleri repository den makinelerimize cekelim**  
-```sudo apt-get install -y docker.io kubelet kubeadm kubectl```
-
-**Kubelet, container runtime'imiz olan docker status lerini kontrol edelim**  
-```sudo systemctl status kubelet.service```   
-```sudo systemctl status docker.service```
-
-**Sistem ayaga kalktigi zaman calisacak sekilde ayarlayalim**  
-```sudo systemctl enable kubelet.service```  
+**Sistem basladigi zaman baslayacak sekilde set edelim**  
+```sudo systemctl enable kubelet.service  ```
 ```sudo systemctl enable docker.service```
+
+**Master'da token bilgisi verilmisti eger not almadiysak su sekilde listeleyebiliriz**  
+```kubeadm token list```
+
+**Yeniden bir token generate etmek istiyorsak**   
+```kubeadm token create```
+
+**Master uzerinde ca cert hash bulunmakta**  
+```openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'```
+
+**Api Server in IP adresi ya da adi, token imiz ve cert ile Node'umuzu cluster a dahil edelim**  
+```sudo kubeadm join <ip>:6443 --token<token> --discovery-token-ca-cert-hash <ca_cert_hash>```
+
+**Master a donecek olursak networking pod u yaratilana kadar NotReady state de gorulecektir**  
+**Pod un schedule edilip container inin indirilmesini bekliyor**  
+```kubectl get nodes ```
+
+**Master'da calico pod ve kube-proxy nin yeni eklenen node larda calisir hale gelmesini gozlemleyelim**  
+```kubectl get pods --all-namespaces --watch```
+
+**Master da eklenen node umuz status unun Ready e donmesini gozlemleriz**  
+```kubectl get nodes```
