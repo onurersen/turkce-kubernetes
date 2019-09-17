@@ -7,7 +7,7 @@ I'm a fan of K8S.
 I try to create videos to explain easy to complex issues that I experience and solve  
 through my journey with this technology.
 
-If you want to check here is the [link](https://www.youtube.com/channel/UCsuJZR9zQkyjmsAIvLQORgA "Türkçe Kubernetes")
+If you want to check here is the [link](https://www.youtube.com/channel/UCsuJZR9zQkyjmsAIvLQORgA "Türkçe Kubernetes")  
 Watch out all content stands to be in Turkish. ☺️
 
 ![picture alt](https://onurersen.gitlab.io/img/turkce_kubernetes_promo_small.png)
