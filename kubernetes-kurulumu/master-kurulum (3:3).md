@@ -1,8 +1,8 @@
 **NODE ICIN YAPILACAKLAR LISTESI**  
 
 **kubelet ve container runtime service lerini kontrol ederim**  
-```sudo systemctl status kubelet.service  
-sudo systemctl status docker.service  ```
+```sudo systemctl status kubelet.service```  
+```sudo systemctl status docker.service  ```
 
 **Sistem basladigi zaman baslayacak sekilde set edelim**  
 ```sudo systemctl enable kubelet.service  ```
